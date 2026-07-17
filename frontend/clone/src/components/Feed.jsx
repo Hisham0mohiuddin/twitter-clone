@@ -6,6 +6,10 @@ const Feed = () => {
     <div>
       <CreatePost />
       <Tweet/>
+      <Tweet/>
+      <Tweet></Tweet>
+      <Tweet> </Tweet>
+      <Tweet></Tweet>
     </div>
   );
 };
