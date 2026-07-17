@@ -4,7 +4,7 @@ import Feed  from "./Feed";
 
 const Home = ()=>{
     return (
-         <div className="flex mx-auto w-[90%]">
+         <div className="flex mx-auto w-[90%] mt-1">
             <div className="w-1/5 border border-red-500">
                 <LeftSidebar />
             </div>
