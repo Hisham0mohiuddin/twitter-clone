@@ -1,3 +1,3 @@
 export const RightSidebar = () => {
-    return <div>Right Sidebar</div>;
+    return <div className = "">Right Sidebar</div>;
 };

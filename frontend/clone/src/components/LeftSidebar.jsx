@@ -10,13 +10,13 @@ import "../styles/LeftSidebar.css";
 
 export const LeftSidebar = () => {
     return <div>
-        <div className="container">
+        <div className="w-[90%]">
             {/* this the calss for the logo of twitter  */}
             <div className="logo">
-                <img className="ml-5" width = {"30px"} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0D8eZ-_N-BdQxVAkaq517NlS5AFgHYhWDyz-ELNaqZQ&s=10" alt="twitter-logo" srcset="" />
+                <img className="ml-5" width = {"30px"} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0D8eZ-_N-BdQxVAkaq517NlS5AFgHYhWDyz-ELNaqZQ&s=10" alt="twitter-logo" />
             </div>
             {/* this the class of gogin to the different pages in the leftsidebar */}
-            <div className="my-4">
+            <div className="my-4 ">
                 <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
                     {/* there sohould be icon and its text  */}
                     <CiHome size = "24px"></CiHome>
@@ -53,7 +53,7 @@ export const LeftSidebar = () => {
                     <h1 className="font-bold text-lg ml-2 ">Logout</h1>
                 </div>
                 
-                <button className = "px-4 py-2 border-none text-md bg-[#1098F8] rounded-full w-full text-white font-bold hover:cursor-pointer" >Post</button>
+                <button className = "px-4 py-2  mx-4 border-none text-md bg-[#1098F8] rounded-full text-white font-bold hover:cursor-pointer  hover:bg-[#3a5bde]" >Post</button>
 
             </div>
         </div>
