@@ -11,7 +11,7 @@ const Home = ()=>{
                 <LeftSidebar />
             </div>
 
-            <div className="w-3/5 border border-gray-100">
+            <div className="w-3/5 border-l border-r border-gray-100">
                 <Outlet />
             </div>
 

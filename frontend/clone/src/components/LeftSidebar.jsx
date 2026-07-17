@@ -7,6 +7,7 @@ import { CiLogout } from "react-icons/ci";
 
 
 import "../styles/LeftSidebar.css";
+import { Link } from "react-router-dom";
 
 export const LeftSidebar = () => {
     return <div>
@@ -17,43 +18,43 @@ export const LeftSidebar = () => {
             </div>
             {/* this the class of gogin to the different pages in the leftsidebar */}
             <div className="my-4 ">
-                <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
+                <Link to="/" className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
                     {/* there sohould be icon and its text  */}
                     <CiHome size = "24px"></CiHome>
                     <h1 className="font-bold text-lg ml-2 ">Home</h1>
-                </div>
+                </Link>
 
-                <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
+                <Link to="/" className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
                     {/* there sohould be icon and its text  */}
                     <CiHashtag size = "24px"></CiHashtag>
                     <h1 className="font-bold text-lg ml-2 ">Explore</h1>
-                </div>
+                </Link>
 
-                <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
+                <Link to="notification" className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
                     {/* there sohould be icon and its text  */}
                     <IoIosNotificationsOutline size = "24px"></IoIosNotificationsOutline>
                     <h1 className="font-bold text-lg ml-2 ">Notification</h1>
-                </div>
+                </Link>
 
-                <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
+                <Link to="/profile" className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
                     {/* there sohould be icon and its text  */}
                     <CiUser size = "24px"></CiUser>
                     <h1 className="font-bold text-lg ml-2 ">Profile</h1>
-                </div>
+                </Link>
 
-                <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
+                <Link to="Favorites" className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
                     {/* there sohould be icon and its text  */}
                     <CiBookmark size = "24px"></CiBookmark>
                     <h1 className="font-bold text-lg ml-2 ">Favorites</h1>
-                </div>
+                </Link>
                 
-                <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
+                <Link to="/logout" className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
                     {/* there sohould be icon and its text  */}
                     <CiLogout size = "24px"></CiLogout>
                     <h1 className="font-bold text-lg ml-2 ">Logout</h1>
-                </div>
+                </Link>
                 
-                <button className = "px-4 py-2  mx-4 border-none text-md bg-[#1098F8] rounded-full text-white font-bold hover:cursor-pointer  hover:bg-[#3a5bde]" >Post</button>
+                <button className = "px-4 py-2  mx-4 border-none text-md bg-[#1098F8] w-full rounded-full text-white font-bold hover:cursor-pointer  hover:bg-[#3a5bde]" >Post</button>
 
             </div>
         </div>

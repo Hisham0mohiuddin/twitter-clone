@@ -31,7 +31,7 @@ export const RightSidebar = () => {
                         </div>
                         {/* the follow button  */}
                         <div>
-                        <button className = "bg-[#01111c] px-4 py-3 text-white font-semibold text-center border-none rounded-full p-2 hover:bg-blue-950"> Follow</button><button></button>
+                        <button className = "bg-[#01111c] px-4 py-3 text-white font-semibold text-center border-none rounded-full p-2 hover:bg-blue-950"> Follow</button>
                         </div>
                     </div>
                     <div className = "flex justify-between py-2">
@@ -47,7 +47,7 @@ export const RightSidebar = () => {
                         </div>
                         {/* the follow button  */}
                         <div>
-                        <button className = "bg-[#01111c] px-4 py-3 text-white font-semibold text-center border-none rounded-full p-2 hover:bg-blue-950"> Follow</button><button></button>
+                        <button className = "bg-[#01111c] px-4 py-3 text-white font-semibold text-center border-none rounded-full p-2 hover:bg-blue-950"> Follow</button>
                         </div>
                     </div>
                     <div className = "flex justify-between py-2">
@@ -63,7 +63,7 @@ export const RightSidebar = () => {
                         </div>
                         {/* the follow button  */}
                         <div>
-                        <button className = "bg-[#01111c] px-4 py-3 text-white font-semibold text-center border-none rounded-full p-2 hover:bg-blue-950"> Follow</button><button></button>
+                        <button className = "bg-[#01111c] px-4 py-3 text-white font-semibold text-center border-none rounded-full p-2 hover:bg-blue-950"> Follow</button>
                         </div>
                     </div>
                 </div>
