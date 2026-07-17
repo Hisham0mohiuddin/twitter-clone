@@ -1,58 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaXTwitter } from "react-icons/fa6";
 
+
 const Login = () => {
+  const [isLogin, setIsLogin] = useState(true);
+
+  const loginSignupHandler = () => {
+    setIsLogin(!isLogin);
+  };
+
   return (
-    <div className="flex justify-center items-center h-screen bg-white">
-      <div className="w-[420px] p-8 border border-gray-200 rounded-2xl shadow-sm">
-        {/* Logo */}
-        <div className="flex justify-center mb-6">
-          <FaXTwitter size={50} />
+    <div className="flex items-center justify-center h-screen w-screen px-4 bg-white">
+      <div className="flex flex-col md:flex-row items-center justify-around w-full max-w-6xl gap-8">
+        
+        {/* Left Side: Big X Logo */}
+        <div className="flex justify-center items-center w-full md:w-1/2">
+          <FaXTwitter size= "680px"></FaXTwitter>
         </div>
 
-        {/* Heading */}
-        <h1 className="text-3xl font-bold text-center mb-8">
-          Sign in to X
-        </h1>
+        {/* Right Side: Authentication Panel */}
+        <div className="w-full md:w-[40%] px-4">
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-black mb-8">
+            Happening now.
+          </h1>
 
-        {/* Email */}
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full border border-gray-300 rounded-md p-3 mb-4 outline-none focus:border-blue-500"
-        />
+          <h2 className="text-2xl md:text-3xl font-bold text-black mb-4">
+            {isLogin ? "Login" : "Signup"}
+          </h2>
 
-        {/* Password */}
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full border border-gray-300 rounded-md p-3 mb-6 outline-none focus:border-blue-500"
-        />
+          <form className="flex flex-col max-w-sm">
+            {!isLogin && (
+              <>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="outline-blue-500 border border-gray-300 px-3 py-2 rounded-full my-2 text-black placeholder-gray-500"
+                />
 
-        {/* Login Button */}
-        <button className="w-full bg-black text-white py-3 rounded-full font-bold hover:bg-gray-900 transition">
-          Login
-        </button>
+                <input
+                  type="text"
+                  placeholder="Username"
+                  className="outline-blue-500 border border-gray-300 px-3 py-2 rounded-full my-2 text-black placeholder-gray-500"
+                />
+              </>
+            )}
 
-        {/* Divider */}
-        <div className="flex items-center my-6">
-          <hr className="flex-1" />
-          <span className="mx-3 text-gray-500">or</span>
-          <hr className="flex-1" />
+            <input
+              type="email"
+              placeholder="Email"
+              className="outline-blue-500 border border-gray-300 px-3 py-2 rounded-full my-2 text-black placeholder-gray-500"
+            />
+
+            <input
+              type="password"
+              placeholder="Password"
+              className="outline-blue-500 border border-gray-300 px-3 py-2 rounded-full my-2 text-black placeholder-gray-500"
+            />
+
+            <button
+              type="submit"
+              className="bg-[#1098F8] hover:bg-blue-500 transition-colors text-white border-none py-2 my-4 rounded-full text-lg font-semibold"
+            >
+              {isLogin ? "Login" : "Signup"}
+            </button>
+          </form>
+
+          <p className="max-w-sm mt-4 text-gray-700">
+            {isLogin ? "Don't have an account? " : "Already have an account? "}
+            <span
+              onClick={loginSignupHandler}
+              className="text-blue-500 cursor-pointer font-semibold hover:underline"
+            >
+              {isLogin ? "Signup" : "Login"}
+            </span>
+          </p>
         </div>
 
-        {/* Google Button */}
-        <button className="w-full border border-gray-300 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
-          Sign in with Google
-        </button>
-
-        {/* Footer */}
-        <p className="text-center text-gray-500 mt-6">
-          Don't have an account?{" "}
-          <span className="text-blue-500 cursor-pointer hover:underline">
-            Sign up
-          </span>
-        </p>
       </div>
     </div>
   );
