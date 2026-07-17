@@ -1,19 +1,21 @@
 import { LeftSidebar } from "./LeftSidebar";
 import { RightSidebar } from "./RightSidebar";
 import Feed  from "./Feed";
+import {Outlet} from 'react-router-dom';
 
 const Home = ()=>{
     return (
+        
          <div className="flex mx-auto w-[90%] mt-1">
-            <div className="w-1/5 border border-red-500">
+            <div className="w-1/5">
                 <LeftSidebar />
             </div>
 
-            <div className="w-3/5 border border-blue-500">
-                <Feed />
+            <div className="w-3/5 border border-gray-100">
+                <Outlet />
             </div>
 
-            <div className="w-1/5 border border-green-500">
+            <div className="w-1/5">
                 <RightSidebar />
             </div>
             
