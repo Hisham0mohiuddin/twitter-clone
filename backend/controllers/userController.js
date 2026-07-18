@@ -1,8 +1,9 @@
 // Fixed Register Controller
 import bcryptjs from "bcryptjs";
 import User from "../models/userSchema.js";
-
-export const Register = async (req, res) => {
+import { decrypt } from "dotenv";
+import jwt from "jsonwebtoken"
+const Register = async (req, res) => {
     try {
         const { name, username, email, password } = req.body;
         
@@ -42,3 +43,48 @@ export const Register = async (req, res) => {
         return res.status(500).json({ message: "Server error", success: false });
     }
 };
+
+const Login  = async(req,res)=>{
+    try {
+        const {email,password} = req.body;
+        if(!email || !password) {
+            return res.status(401).json({
+                message: "All fields are required", // Fixed spelling
+                success: false
+            });
+        }
+
+        // find teh user 
+        const user = await User.findOne({email});
+        if(!user){
+            return res.status(401).json({
+                message: "User dosent exist exist",
+                success: false // Fixed spelling
+            });
+        }
+        const isMatch = await bcryptjs.compare(password , user.password);
+        if(!isMatch){
+            return res.status(401).json({
+                message: "Incorrect email or password",
+                success: false // Fixed spelling
+            });
+        }
+
+        // now that eror exists and the password matches 
+        // we are to generate a token 
+        const tokenData = {
+            userId: user._id
+        }
+        const token = jwt.sign(tokenData,process.env.TOKEN_SECRET,{expiresIn: "1d"});
+
+        // now the token is generated we just have ot store it in the cookie
+        return res.status(200).cookie("token",token,{expiresIn: "1d",httpOnly: true}).json({
+            message : `welcome back ${user.name}`,
+            sucess: true
+        })
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export {Register,Login};
