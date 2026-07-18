@@ -94,4 +94,58 @@ export const Logout = (req, res) => {
         success: true // FIXED: Removed trailing semicolon block
     });
 };
+
+export const bookmarks = async (req, res) => {
+    try {
+        const loggedInUserId = req.user;
+        const tweetId = req.params.id;
+
+        const user = await User.findById(loggedInUserId);
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User does not exist",
+                success: false
+            });
+        }
+
+        if (user.bookmarks.includes(tweetId)){
+            // unsave or remove
+            await User.findByIdAndUpdate(
+                loggedInUserId,
+                {
+                    $pull: {
+                        bookmarks: tweetId
+                    }
+                }
+            );
+
+            return res.status(200).json({
+                message: "Tweet bookmarked",
+                success: true
+            });
+        }
+
+        await User.findByIdAndUpdate(
+            loggedInUserId,
+            {
+                $push: { bookmarks: tweetId }
+            }
+        );
+
+        return res.status(200).json({
+            message: "Tweet un bookmarked",
+            success: true
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Server error",
+            success: false
+        });
+    }
+};
+
+
 export {Register,Login};

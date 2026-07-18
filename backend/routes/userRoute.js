@@ -1,5 +1,6 @@
 import express from "express";
-import { Register,Login,Logout } from "../controllers/userController.js"; // Adjust path to your controller
+import { Register,Login,Logout, bookmarks } from "../controllers/userController.js"; // Adjust path to your controller
+import { isAuthenticated } from "../config/auth.js";
 
 const router = express.Router();
 
@@ -7,5 +8,6 @@ const router = express.Router();
 router.post("/register", Register);
 router.post("/login",Login);
 router.get("/logout", Logout);
+router.put("/bookmark/:id", isAuthenticated, bookmarks);
 
 export default router;

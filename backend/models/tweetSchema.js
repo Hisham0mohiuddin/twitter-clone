@@ -13,10 +13,6 @@ const tweetSchema  = new mongoose.Schema({
     like :{
         type:Array,
         default: []
-    },
-    bookmarks:{
-        type: Array,
-        default: []
     }
 
 },{timestamps: true})

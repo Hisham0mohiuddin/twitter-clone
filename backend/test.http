@@ -50,3 +50,10 @@ Content-Type: application/json
 
 {
 }
+###
+PUT  http://localhost:5000/api/v1/user/bookmark/6a5b5a3a7c0154b24ea45a29
+Content-Type: application/json
+
+{
+
+}
