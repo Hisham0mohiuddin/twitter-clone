@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import databaseConnection from "./config/database.js";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoute.js";
+import { tweetRoute } from "./routes/tweetRoute.js";
 
 dotenv.config();
 console.log("Your URI is:", process.env.MONGODB_URI);
@@ -27,6 +28,7 @@ app.get("/", (req, res) => {
 
 // Moved this to the bottom!
 app.use("/api/v1/user", userRoutes);
+app.use("api/v1/tweet", tweetRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is sprinting on port ${PORT}`);
