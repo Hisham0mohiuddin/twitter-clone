@@ -4,7 +4,7 @@ import dotenv from "dotenv"
 // to check if we need to give the path here 
 const isAuthenticated = async (req,res,next) => {
     try {
-        const {token} = res.cookies;
+        const {token} = req.cookies;
         console.log(token);
 
         if(!token){
@@ -18,7 +18,7 @@ const isAuthenticated = async (req,res,next) => {
         const decode = jwt.verify(token, process.env.TOKEN_SECRET);
         console.log(decode);
 
-        req.user = decode.id;
+        req.user = decode.userId;
 
         // this is allwoing it to go forward 
         next();

@@ -8,7 +8,7 @@
 #   "email": "Ammar@gmail.com",
 #   "password": "securePassword123"
 # }
-
+###
 # login
 POST http://localhost:5000/api/v1/user/login
 Content-Type: application/json
@@ -16,4 +16,14 @@ Content-Type: application/json
 {
   "email": "Ammar@gmail.com",
   "password": "securePassword123"
+}
+###
+
+# now to tweet with ammar 
+# chekced mongodb to get ammar's id
+POST http://localhost:5000/api/v1/tweet/post
+Content-Type: application/json
+
+{
+  "description": "hello ppls this is the first tweet"
 }

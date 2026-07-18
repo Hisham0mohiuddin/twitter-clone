@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 const tweetSchema  = new mongoose.Schema({
-    userid:{
+    userId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        extend: true
+        required: true
     },
     description: {
         type: String,
-        reuried: true
+        required: true
     },
     like :{
         type:Array,
@@ -21,4 +21,4 @@ const tweetSchema  = new mongoose.Schema({
 
 },{timestamps: true})
 
-export const Tweet = moongoose.model("Tweet", tweetSchema);
+export const Tweet = mongoose.model("Tweet", tweetSchema);
