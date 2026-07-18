@@ -3,7 +3,8 @@ import bcryptjs from "bcryptjs";
 import User from "../models/userSchema.js";
 import { decrypt } from "dotenv";
 import jwt from "jsonwebtoken"
-const Register = async (req, res) => {
+import { response } from "express";
+export const Register = async (req, res) => {
     try {
         const { name, username, email, password } = req.body;
         
@@ -44,7 +45,7 @@ const Register = async (req, res) => {
     }
 };
 
-const Login  = async(req,res)=>{
+export const Login  = async(req,res)=>{
     try {
         const {email,password} = req.body;
         if(!email || !password) {
@@ -166,4 +167,22 @@ export const getMyProfile = async (req,res) => {
     }
 }
 
-export {Register,Login};
+export const getOtherUser = async (req,res) => {
+    // this fucniton user id is coming form logged in user
+    try {
+        const id = req.user;
+        const otherUsers = await User.find({_id:{$ne:id}}).select("-password");
+        if (otherUsers.length === 0) {
+            return res.status(404).json({
+                message: "No other users found",
+                success: false
+            });
+        }
+        return res.status(200).json({
+            otherUsers
+        })
+    } catch (error) {
+
+        console.log(error);
+    }
+}

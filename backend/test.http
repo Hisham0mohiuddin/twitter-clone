@@ -3,9 +3,9 @@ POST http://localhost:5000/api/v1/user/register
 Content-Type: application/json
 
 {
-  "name": "Ammar Mohammed ",
-  "username": "amrq",
-  "email": "Ammar@gmail.com",
+  "name": "Gunnev aid ",
+  "username": "crossfirerules",
+  "email": "guneev@gmail.com",
   "password": "securePassword123"
 }
 ###
@@ -33,7 +33,7 @@ POST http://localhost:5000/api/v1/tweet/post
 Content-Type: application/json
 
 {
-  "description": "this is the second tweet"
+  "description": "random tweet"
 }
 ###
 # deletting the tweet 
@@ -45,14 +45,14 @@ Content-Type: application/json
 }
 ###
 # likieng and distliking a tweet 
-PUT http://localhost:5000/api/v1/tweet/like/6a5b5a3a7c0154b24ea45a29
+PUT http://localhost:5000/api/v1/tweet/like/6a5b5ee2e152bf7317af27bc
 Content-Type: application/json
 
 {
 }
 ###
 # chekcing teh bookmark
-PUT  http://localhost:5000/api/v1/user/bookmark/6a5b5a3a7c0154b24ea45a29
+PUT  http://localhost:5000/api/v1/user/bookmark/6a5b5ee2e152bf7317af27bc
 Content-Type: application/json
 
 {
@@ -60,7 +60,15 @@ Content-Type: application/json
 }
 ###
 #chcking the profile 
-GET http://localhost:5000/api/v1/user/profile/6a5a7bb35de485c19604756a
+GET http://localhost:5000/api/v1/user/profile/6a5b754d9fff598f91d3eebf
+Content-Type: application/json
+
+{
+
+}
+###
+# other users
+GET  http://localhost:5000/api/v1/user/otheruser
 Content-Type: application/json
 
 {

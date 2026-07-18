@@ -6,7 +6,7 @@ import userRoutes from "./routes/userRoute.js";
 import tweetRoute from "./routes/tweetRoute.js";
 
 dotenv.config();
-console.log("Your URI is:", process.env.MONGODB_URI);
+// console.log("Your URI is:", process.env.MONGODB_URI);
 databaseConnection();
 
 const app = express();
