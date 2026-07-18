@@ -48,3 +48,52 @@ export const deleteTweet = async (req,res) => {
         console.log(error);
     }
 }
+
+export const likeOrDislike = async (req, res) => {
+    try {
+        const loggedInUserId = req.user;
+        const tweetId = req.params.id;
+
+        const tweet = await Tweet.findById(tweetId);
+
+        if (!tweet) {
+            return res.status(404).json({
+                message: "Tweet does not exist",
+                success: false
+            });
+        }
+
+        if (tweet.like.includes(loggedInUserId)) {
+            await Tweet.findByIdAndUpdate(
+                tweetId,
+                {
+                    $pull: { like: loggedInUserId }
+                }
+            );
+
+            return res.status(200).json({
+                message: "Tweet disliked",
+                success: true
+            });
+        }
+
+        await Tweet.findByIdAndUpdate(
+            tweetId,
+            {
+                $push: { like: loggedInUserId }
+            }
+        );
+
+        return res.status(200).json({
+            message: "Tweet liked",
+            success: true
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Server error",
+            success: false
+        });
+    }
+};

@@ -1,13 +1,13 @@
 # register ka 
-# POST http://localhost:5000/api/v1/user/register
-# Content-Type: application/json
+POST http://localhost:5000/api/v1/user/register
+Content-Type: application/json
 
-# {
-#   "name": "Ammar Mohammed ",
-#   "username": "amrq",
-#   "email": "Ammar@gmail.com",
-#   "password": "securePassword123"
-# }
+{
+  "name": "Ammar Mohammed ",
+  "username": "amrq",
+  "email": "Ammar@gmail.com",
+  "password": "securePassword123"
+}
 ###
 # login
 POST http://localhost:5000/api/v1/user/login
@@ -36,9 +36,17 @@ Content-Type: application/json
   "description": "this is the second tweet"
 }
 ###
+# deletting the tweet 
 DELETE  http://localhost:5000/api/v1/tweet/delete/6a5b5b244772f436848a31d9
 Content-Type: application/json
 
 {
-  
+
+}
+###
+# likieng and distliking a tweet 
+PUT http://localhost:5000/api/v1/tweet/like/6a5b5a3a7c0154b24ea45a29
+Content-Type: application/json
+
+{
 }
