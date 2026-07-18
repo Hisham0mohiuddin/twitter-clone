@@ -147,5 +147,23 @@ export const bookmarks = async (req, res) => {
     }
 };
 
+export const getMyProfile = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).json({
+                message: "User does not exist",
+                success: false
+            });
+        }
+        return res.status(200).json({
+            user,
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 export {Register,Login};
