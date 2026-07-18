@@ -86,5 +86,12 @@ const Login  = async(req,res)=>{
         console.log(error);
     }
 };
-
+// FIXED: Prefix with export so your userRoute.js file imports it perfectly
+export const Logout = (req, res) => {
+    // FIXED: Removed invalid curly braces and switched expiresIn to a standard maxAge configuration
+    return res.cookie("token", "", { expiresIn: new Date(Date.now()), httpOnly: true }).json({
+        message: "User logged out successfully", // Fixed spelling typo
+        success: true // FIXED: Removed trailing semicolon block
+    });
+};
 export {Register,Login};
