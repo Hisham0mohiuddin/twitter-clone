@@ -12,24 +12,18 @@ databaseConnection();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ==========================================
 // 1. MIDDLEWARES FIRST (Pre-processes requests)
-// ==========================================
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // Now Express safely parses JSON BEFORE matching routes!
 app.use(cookieParser());
 
-// ==========================================
 // 2. ROUTES SECOND (Handles incoming API calls)
-// ==========================================
 app.get("/", (req, res) => {
   res.send("Twitter Clone API is running...");
 });
 
 // Moved this to the bottom!
 app.use("/api/v1/user", userRoutes);
-
-console.log("Registering tweet routes...");
 
 app.use("/api/v1/tweet", tweetRoute);
 

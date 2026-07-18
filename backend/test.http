@@ -18,6 +18,14 @@ Content-Type: application/json
   "password": "securePassword123"
 }
 ###
+# logout request
+GET  http://localhost:5000/api/v1/user/logout
+Content-Type: application/json
+
+{
+
+}
+###
 
 # now to tweet with ammar 
 # chekced mongodb to get ammar's id
@@ -25,5 +33,12 @@ POST http://localhost:5000/api/v1/tweet/post
 Content-Type: application/json
 
 {
-  "description": "hello ppls this is the first tweet"
+  "description": "this is the second tweet"
+}
+###
+DELETE  http://localhost:5000/api/v1/tweet/delete/6a5b5b244772f436848a31d9
+Content-Type: application/json
+
+{
+  
 }
