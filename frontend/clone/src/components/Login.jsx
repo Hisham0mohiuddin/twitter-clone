@@ -1,21 +1,66 @@
 import React, { useState } from "react";
 import { FaXTwitter } from "react-icons/fa6";
+import axios from "axios";
+import { USER_API_END_POINT, TWEET_API_END_POINT } from "../utils/constant";
+import toast from "react-hot-toast";
 
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const loginSignupHandler = () => {
     setIsLogin(!isLogin);
   };
 
+  const submitHandler = async (event) => {
+    event.preventDefault();
+
+    try {
+      let res;
+
+      if (isLogin) {
+        res = await axios.post(
+          `${USER_API_END_POINT}/login`,
+          {
+            email,
+            password
+          },
+          {
+            withCredentials: true
+          }
+        );
+      } else {
+        res = await axios.post(
+          `${USER_API_END_POINT}/register`,
+          {
+            name,
+            username,
+            email,
+            password
+          },
+          {
+            withCredentials: true
+          }
+        );
+      }
+      toast.success(res.data.message);
+
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Something went wrong");
+    }
+  };
+
   return (
     <div className="flex items-center justify-center h-screen w-screen px-4 bg-white">
       <div className="flex flex-col md:flex-row items-center justify-around w-full max-w-6xl gap-8">
-        
+
         {/* Left Side: Big X Logo */}
         <div className="flex justify-center items-center w-full md:w-1/2">
-          <FaXTwitter size= "680px"></FaXTwitter>
+          <FaXTwitter size="680px"></FaXTwitter>
         </div>
 
         {/* Right Side: Authentication Panel */}
@@ -28,18 +73,22 @@ const Login = () => {
             {isLogin ? "Login" : "Signup"}
           </h2>
 
-          <form className="flex flex-col max-w-sm">
+          <form onSubmit={submitHandler} className="flex flex-col max-w-sm">
             {!isLogin && (
               <>
                 <input
                   type="text"
                   placeholder="Name"
+                  value={name}
+                  onChange={(e) => { setName(e.target.value) }}
                   className="outline-blue-500 border border-gray-300 px-3 py-2 rounded-full my-2 text-black placeholder-gray-500"
                 />
 
                 <input
                   type="text"
                   placeholder="Username"
+                  value={username}
+                  onChange={(e) => { setUsername(e.target.value) }}
                   className="outline-blue-500 border border-gray-300 px-3 py-2 rounded-full my-2 text-black placeholder-gray-500"
                 />
               </>
@@ -48,12 +97,16 @@ const Login = () => {
             <input
               type="email"
               placeholder="Email"
+              value={email}
+              onChange={(e) => { setEmail(e.target.value) }}
               className="outline-blue-500 border border-gray-300 px-3 py-2 rounded-full my-2 text-black placeholder-gray-500"
             />
 
             <input
               type="password"
               placeholder="Password"
+              value={password}
+              onChange={(e) => { setPassword(e.target.value) }}
               className="outline-blue-500 border border-gray-300 px-3 py-2 rounded-full my-2 text-black placeholder-gray-500"
             />
 
