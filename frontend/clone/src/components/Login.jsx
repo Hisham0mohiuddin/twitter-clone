@@ -3,6 +3,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import axios from "axios";
 import { USER_API_END_POINT, TWEET_API_END_POINT } from "../utils/constant";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
@@ -11,6 +12,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const loginSignupHandler = () => {
     setIsLogin(!isLogin);
@@ -33,6 +35,7 @@ const Login = () => {
             withCredentials: true
           }
         );
+        
       } else {
         res = await axios.post(
           `${USER_API_END_POINT}/register`,
@@ -48,6 +51,9 @@ const Login = () => {
         );
       }
       toast.success(res.data.message);
+      if(res.data.success){
+        navigate("/")
+      }
 
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong");
