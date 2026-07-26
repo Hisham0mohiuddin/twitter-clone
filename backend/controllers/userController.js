@@ -186,3 +186,78 @@ export const getOtherUser = async (req,res) => {
         console.log(error);
     }
 }
+
+export const followOrUnfollow = async (req, res) => {
+    try {
+        const loggedInUserId = req.user;
+        const targetUserId = req.params.id;
+
+        // Prevent following yourself
+        if (loggedInUserId === targetUserId) {
+            return res.status(400).json({
+                message: "You cannot follow yourself",
+                success: false
+            });
+        }
+
+        const loggedInUser = await User.findById(loggedInUserId);
+        const targetUser = await User.findById(targetUserId);
+
+        if (!loggedInUser || !targetUser) {
+            return res.status(404).json({
+                message: "User not found",
+                success: false
+            });
+        }
+
+        // Already following -> Unfollow
+        if (loggedInUser.following.includes(targetUserId)) {
+
+            await User.findByIdAndUpdate(
+                loggedInUserId,
+                {
+                    $pull: { following: targetUserId }
+                }
+            );
+
+            await User.findByIdAndUpdate(
+                targetUserId,
+                {
+                    $pull: { followers: loggedInUserId }
+                }
+            );
+
+            return res.status(200).json({
+                message: "User unfollowed successfully",
+                success: true
+            });
+        }
+
+        // Not following -> Follow
+        await User.findByIdAndUpdate(
+            loggedInUserId,
+            {
+                $push: { following: targetUserId }
+            }
+        );
+
+        await User.findByIdAndUpdate(
+            targetUserId,
+            {
+                $push: { followers: loggedInUserId }
+            }
+        );
+
+        return res.status(200).json({
+            message: "User followed successfully",
+            success: true
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Server Error",
+            success: false
+        });
+    }
+};
