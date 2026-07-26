@@ -76,7 +76,7 @@ Content-Type: application/json
 }
 ###
 #folowing and not following 
-POST  http://localhost:5000/api/v1/user/follow/6a5b76d8587c6aac69e2ea63
+POST  http://localhost:5000/api/v1/user/follow/6a5b756d9fff598f91d3eec0
 Content-Type: application/json
 
 {
@@ -85,6 +85,14 @@ Content-Type: application/json
 ###
 #get all tweets of loggend and following 
 GET http://localhost:5000/api/v1/tweet/getalltweets
+Content-Type: application/json
+
+{
+
+}
+###
+# only following ppl tweets
+GET http://localhost:5000/api/v1/tweet/getallfollowertweets
 Content-Type: application/json
 
 {

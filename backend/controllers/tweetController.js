@@ -125,3 +125,30 @@ export const getAllTweets = async (req, res) => {
         });
     }
 };
+
+export const getAllFollowingTweets = async (req, res) => {
+    try {
+        const loggedInUserId = req.user;
+
+        const loggedInUser = await User.findById(loggedInUserId);
+
+        const tweets = await Tweet.find({
+            userId: {
+                $in: loggedInUser.following
+            }
+        }).sort({ createdAt: -1 });
+
+        return res.status(200).json({
+            success: true,
+            tweets
+        });
+
+    } catch (error) {
+        console.log(error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Server Error"
+        });
+    }
+};
