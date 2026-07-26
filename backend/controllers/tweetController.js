@@ -1,4 +1,5 @@
 import { Tweet } from "../models/tweetSchema.js";
+import User from "../models/userSchema.js";
 
 export const createTweet = async (req, res) => {
     try {
@@ -98,3 +99,29 @@ export const likeOrDislike = async (req, res) => {
     }
 };
 
+export const getAllTweets = async (req, res) => {
+    try {
+        const loggedInUserId = req.user;
+
+        const loggedInUser = await User.findById(loggedInUserId);
+
+        const tweets = await Tweet.find({
+            userId: {
+                $in: [...loggedInUser.following, loggedInUserId]
+            }
+        }).sort({ createdAt: -1 });
+
+        return res.status(200).json({
+            success: true,
+            tweets
+        });
+
+    } catch (error) {
+        console.log(error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Server Error"
+        });
+    }
+};
