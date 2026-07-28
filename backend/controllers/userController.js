@@ -81,7 +81,8 @@ export const Login  = async(req,res)=>{
         // now the token is generated we just have ot store it in the cookie
         return res.status(200).cookie("token",token,{expiresIn: "1d",httpOnly: true,secure: false,sameSite: 'lax'}).json({
             message : `welcome back ${user.name}`,
-            success: true
+            success: true,
+            user
         })
     } catch (error) {
         console.log(error);

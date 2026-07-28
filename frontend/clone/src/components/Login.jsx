@@ -4,6 +4,8 @@ import axios from "axios";
 import { USER_API_END_POINT, TWEET_API_END_POINT } from "../utils/constant";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getUser } from "../redux/userSlice";
 
 
 const Login = () => {
@@ -12,6 +14,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const loginSignupHandler = () => {
@@ -35,6 +38,7 @@ const Login = () => {
             withCredentials: true
           }
         );
+        dispatch(getUser(res?.data?.user));
         
       } else {
         res = await axios.post(
@@ -49,6 +53,7 @@ const Login = () => {
             withCredentials: true
           }
         );
+        dispatch(getUser(res?.data?.user));
       }
       toast.success(res.data.message);
       if(res.data.success){
