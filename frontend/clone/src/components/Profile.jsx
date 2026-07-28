@@ -2,8 +2,13 @@ import React from 'react';
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import Avatar from 'react-avatar';
+import useGetProfile from "../hooks/useGetProfile";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
+  let {user} = useSelector(store=>store.user);
+
+  useGetProfile(user?._id);
   return (
     <div className="border-x border-gray-200 min-h-screen">
       {/* Top Header */}

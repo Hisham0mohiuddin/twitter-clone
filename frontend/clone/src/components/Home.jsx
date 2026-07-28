@@ -9,9 +9,7 @@ import { useSelector } from "react-redux";
 const Home = ()=>{
     // to add the id
     // let id ="6a5b76d8587c6aac69e2ea63"; 
-    let {id,otheruser} = useSelector(store=>store.user);
 
-    useGetProfile(id);
     return (
         
          <div className="flex mx-auto w-[90%] mt-1">
