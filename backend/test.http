@@ -60,7 +60,7 @@ Content-Type: application/json
 }
 ###
 #chcking the profile 
-GET http://localhost:5000/api/v1/user/profile/6a5b754d9fff598f91d3eebf
+GET http://localhost:5000/api/v1/user/profile/6a665f5a3c55266d9df9861e
 Content-Type: application/json
 
 {

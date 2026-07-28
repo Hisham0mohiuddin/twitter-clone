@@ -11,13 +11,14 @@ const useGetProfile = (id) => {
         const fetchProfile = async () => {
             try {
                 const res = await axios.get(
-                    `${USER_API_END_POINT}/profile${id}`,
+                    `${USER_API_END_POINT}/profile/${id}`,
                     {
                         withCredentials: true,
                     }
                 );
-
+                console.log(res.data);
                 if (res.data.success) {
+                    console.log("Dispatching:", res.data.user);
                     dispatch(getUser(res.data.user));
                 }
             } catch (error) {
@@ -27,6 +28,7 @@ const useGetProfile = (id) => {
         if(id)
         {
             fetchProfile();
+            console.log("im here")
         }
     }, [id,dispatch]);
 };

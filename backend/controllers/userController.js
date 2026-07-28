@@ -79,7 +79,7 @@ export const Login  = async(req,res)=>{
         const token = jwt.sign(tokenData,process.env.TOKEN_SECRET,{expiresIn: "1d"});
 
         // now the token is generated we just have ot store it in the cookie
-        return res.status(200).cookie("token",token,{expiresIn: "1d",httpOnly: true}).json({
+        return res.status(200).cookie("token",token,{expiresIn: "1d",httpOnly: true,secure: false,sameSite: 'lax'}).json({
             message : `welcome back ${user.name}`,
             success: true
         })
@@ -160,6 +160,7 @@ export const getMyProfile = async (req,res) => {
         }
         return res.status(200).json({
             user,
+            success: true
         })
 
     } catch (error) {

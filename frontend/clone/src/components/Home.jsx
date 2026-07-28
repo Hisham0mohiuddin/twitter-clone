@@ -6,8 +6,9 @@ import useGetProfile from "../hooks/useGetProfile";
 
 
 const Home = ()=>{
-    
-    useGetProfile();
+    // to add the id
+    let id ="6a665f5a3c55266d9df9861e"; 
+    useGetProfile(id);
     return (
 
         
