@@ -181,7 +181,9 @@ export const getOtherUser = async (req,res) => {
             });
         }
         return res.status(200).json({
-            otherUsers
+            otherUsers,
+            message:"other users returned",
+            success: true
         })
     } catch (error) {
 
