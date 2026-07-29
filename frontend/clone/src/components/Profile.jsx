@@ -6,10 +6,9 @@ import useGetProfile from "../hooks/useGetProfile";
 import { useSelector } from "react-redux";
 
 const Profile = () => {
-  
-  let {user,profile} = useSelector(store=>store.user);
+  let {user} = useSelector(store=>store.user);
+
   useGetProfile(user?._id);
-  if(!profile) return <div className="border-x border-gray-200 min-h-screen text-center text-2xl font-bold">Loading ...</div>
   return (
     <div className="border-x border-gray-200 min-h-screen">
       {/* Top Header */}
@@ -18,7 +17,7 @@ const Profile = () => {
           <IoIosArrowRoundBack size="28px" />
         </Link>
         <div>
-          <h1 className="font-bold text-lg leading-tight">{profile?.name}</h1>
+          <h1 className="font-bold text-lg leading-tight">Hisham</h1>
           <p className="text-gray-500 text-xs">10 Posts</p>
         </div>
       </div>
@@ -49,8 +48,8 @@ const Profile = () => {
 
       {/* User Info */}
       <div className="px-4 mt-2">
-        <h1 className="font-bold text-xl leading-tight">{profile?.name}</h1>
-        <p className="text-gray-500 text-sm">@{profile?.username}</p>
+        <h1 className="font-bold text-xl leading-tight">Hisham</h1>
+        <p className="text-gray-500 text-sm">@hishamjuly</p>
       </div>
 
       {/* Bio */}

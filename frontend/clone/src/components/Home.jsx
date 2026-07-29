@@ -4,18 +4,15 @@ import Feed  from "./Feed";
 import {Outlet} from 'react-router-dom';
 import useGetProfile from "../hooks/useGetProfile";
 import { useSelector } from "react-redux";
-import useOtherUsers from "../hooks/useOtherUsers";
 
 
 const Home = ()=>{
-    // whenever at home we need to call the custom hook to 
-    // add the other users in some otheruser attribute in our state
-    const {users, otherUsers} = useSelector(store=>store.user);
-    useOtherUsers();
-    
+    // to add the id
+    // let id ="6a5b76d8587c6aac69e2ea63"; 
+
     return (
-    
-        <div className="flex mx-auto w-[90%] mt-1">
+        
+         <div className="flex mx-auto w-[90%] mt-1">
             <div className="w-1/5">
                 <LeftSidebar />
             </div>
