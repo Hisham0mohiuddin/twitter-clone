@@ -15,8 +15,9 @@ const Profile = () => {
     
     useGetProfile(user?._id);
   }
+  let acuser = user?._id== id;
   
-  if(!profile) return <div className="border-x border-gray-200 min-h-screen text-center text-2xl font-bold">Loading ...</div>
+  if(!profile ||id==undefined) return <div className="border-x border-gray-200 min-h-screen text-center text-2xl font-bold">Loading ...</div>
   return (
     <div className="border-x border-gray-200 min-h-screen">
       {/* Top Header */}
@@ -50,7 +51,7 @@ const Profile = () => {
       {/* Action Row (Edit Profile Button) */}
       <div className="flex justify-end p-3 h-16">
         <button className="bg-[#01111c] px-4 py-1.5 text-white font-semibold rounded-full hover:bg-blue-950 border border-gray-300 text-sm transition">
-          Edit Profile
+          {acuser?"Edit Profile":"Follow"}
         </button>
       </div>
 

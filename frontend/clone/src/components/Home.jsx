@@ -5,6 +5,7 @@ import {Outlet} from 'react-router-dom';
 import useGetProfile from "../hooks/useGetProfile";
 import { useSelector } from "react-redux";
 import useOtherUsers from "../hooks/useOtherUsers";
+import useGetMyTweets from "../hooks/useGetMyTweets";
 
 
 const Home = ()=>{
@@ -12,6 +13,7 @@ const Home = ()=>{
     // add the other users in some otheruser attribute in our state
     const {users, otherUsers} = useSelector(store=>store.user);
     useOtherUsers();
+    useGetMyTweets();
     
     return (
     

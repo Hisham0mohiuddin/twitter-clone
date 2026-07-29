@@ -8,7 +8,7 @@ export const createTweet = async (req, res) => {
         
         // 2. Grab the validated userId attached by your isAuthenticated middleware
         const userId = req.user; 
-
+        const user = await User.findById(userId).select("-password");
         if (!description) {
             return res.status(400).json({
                 message: "Tweet description is required",
@@ -19,7 +19,8 @@ export const createTweet = async (req, res) => {
         // 3. Create the document matching your schema keys exactly
         const newTweet = await Tweet.create({
             description,
-            userId: userId // Maps directly to your schema reference key
+            userId: userId, // Maps directly to your schema reference key
+            userDetails : user
         });
 
         return res.status(201).json({
@@ -113,6 +114,7 @@ export const getAllTweets = async (req, res) => {
 
         return res.status(200).json({
             success: true,
+            message:"tweets given back succesfully",
             tweets
         });
 

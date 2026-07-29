@@ -3,11 +3,15 @@ import Avatar from 'react-avatar'
 import { AiOutlineLike } from "react-icons/ai";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
+import { useSelector } from 'react-redux';
 
 
 
-const Tweet = () => {
-  return (
+const Tweet = ({tweet}) => {
+//   const {user} = useSelector(store=>store.user);
+//   if(!user) return <div className = "text-center text-2xl font-bold border-b border-gray-200 pb-2"> Loading...</div>
+    console.log(tweet?.userDetails?.name);
+    return (
     <div className = "p-3 border-b border-gray-200">
         <div>
             <div className = "flex w-full">
@@ -16,12 +20,12 @@ const Tweet = () => {
                 <div className= "flex-col ml-2 w-full pr-3 ">
                     {/* the profile section  */}
                     <div className = "flex items-center ">
-                        <h1 className = "font-bold">Hisham</h1>
-                        <p className = "text-gray-500 text-sm ml-1"> @hisham0Mohiuddin</p>
+                        <h1 className = "font-bold">{tweet?.userDetails?.[0]?.name}</h1>
+                        <p className = "text-gray-500 text-sm ml-1"> @{tweet?.userDetails?.[0]?.username}</p>
                     </div>
                     {/* making the tweet text section  */}
                     <div>
-                        <p>Hello devleopers welcome to twitter </p>
+                        <p> {tweet?.description} </p>
                     </div>
                     {/* makign the likes save and share section */}
                     <div className = "flex justify-between gap-x-1.5">
@@ -30,7 +34,7 @@ const Tweet = () => {
                             <div className="p-2 hover:bg-green-200 rounded-full cursor-pointer">
                                 <AiOutlineLike size= "20px"/>
                             </div>
-                            <p>0</p>
+                            <p>{tweet?.like?.length}</p>
                         </div>
                         <div className = "flex items-center">
                             <div className="p-2 hover:bg-pink-200 rounded-full cursor-pointer">

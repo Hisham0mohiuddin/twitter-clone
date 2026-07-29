@@ -13,8 +13,11 @@ const tweetSchema  = new mongoose.Schema({
     like :{
         type:Array,
         default: []
+    },
+    userDetails : {
+        type:Array,
+        defualt : []
     }
-
 },{timestamps: true})
 
 export const Tweet = mongoose.model("Tweet", tweetSchema);

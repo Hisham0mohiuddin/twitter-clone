@@ -14,8 +14,8 @@ POST http://localhost:5000/api/v1/user/login
 Content-Type: application/json
 
 {
-  "email": "Ammar@gmail.com",
-  "password": "securePassword123"
+  "email": "thewoo@gmail.com",
+  "password": "abcd"
 }
 ###
 # logout request
@@ -33,7 +33,7 @@ POST http://localhost:5000/api/v1/tweet/post
 Content-Type: application/json
 
 {
-  "description": "random tweet"
+  "description": "madhu 1st tweet"
 }
 ###
 # deletting the tweet 
@@ -76,7 +76,7 @@ Content-Type: application/json
 }
 ###
 #folowing and not following 
-POST  http://localhost:5000/api/v1/user/follow/6a5b756d9fff598f91d3eec0
+POST  http://localhost:5000/api/v1/user/follow/6a665fc13c55266d9df9861f
 Content-Type: application/json
 
 {

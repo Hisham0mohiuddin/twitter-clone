@@ -20,7 +20,7 @@ export const RightSidebar = () => {
                     <div>
                         <h1 className="font-bold text-2xl">Who to follow ?</h1>
                     </div>
-                    {/* the suggestio wich each has a avatar their name and a follow button*/}
+                    {/* the suggestio wich each has a avatar their name and a profile button*/}
 
                     {otherUsers?.map((user)=>{
                         return ( <div key={user?._id} className="flex justify-between py-2">
@@ -38,7 +38,7 @@ export const RightSidebar = () => {
 
                             <div>
                                 <Link to={`/profile/${user._id}`}>
-                                    <button className="bg-[#01111c] px-4 py-3 text-white font-semibold text-center border-none rounded-full p-2 hover:bg-blue-950"> Follow</button>
+                                    <button className="bg-[#01111c] px-4 py-3 text-white font-semibold text-center border-none rounded-full p-2 hover:bg-blue-950"> Profile</button>
                                 </Link>
                             </div>
                         </div>)
