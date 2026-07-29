@@ -4,11 +4,18 @@ import { Link } from 'react-router-dom';
 import Avatar from 'react-avatar';
 import useGetProfile from "../hooks/useGetProfile";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const Profile = () => {
-  
+  const {id} = useParams();
   let {user,profile} = useSelector(store=>store.user);
-  useGetProfile(user?._id);
+  if(id){
+    useGetProfile(id)
+  }else{
+    
+    useGetProfile(user?._id);
+  }
+  
   if(!profile) return <div className="border-x border-gray-200 min-h-screen text-center text-2xl font-bold">Loading ...</div>
   return (
     <div className="border-x border-gray-200 min-h-screen">

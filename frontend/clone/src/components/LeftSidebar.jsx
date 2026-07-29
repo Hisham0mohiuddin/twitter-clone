@@ -8,8 +8,10 @@ import { CiLogout } from "react-icons/ci";
 
 import "../styles/LeftSidebar.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const LeftSidebar = () => {
+    const {user} = useSelector(store=>store.user);
     return <div>
         <div className="w-[90%]">
             {/* this the calss for the logo of twitter  */}
@@ -36,7 +38,7 @@ export const LeftSidebar = () => {
                     <h1 className="font-bold text-lg ml-2 ">Notification</h1>
                 </Link>
 
-                <Link to="/profile" className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
+                <Link to={`/profile/${user?._id}`} className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 cursor-pointer rounded-full">
                     {/* there sohould be icon and its text  */}
                     <CiUser size = "24px"></CiUser>
                     <h1 className="font-bold text-lg ml-2 ">Profile</h1>

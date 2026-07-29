@@ -15,15 +15,12 @@ const Body = () => {
                     path:"/",
                     element:<Feed/>
                 },{
-                    path:"/profile",
+                    path:"/profile/:id",
                     element : <Profile/>
                 }
             ]
         },
-        {
-            path:"/profile",
-            element :<Profile/>
-        },
+        
         {
             path: "/login",
             element: <Login/>

@@ -1,6 +1,7 @@
 import Avatar from "react-avatar";
 import { CiSearch } from "react-icons/ci";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const RightSidebar = () => {
     const { user, otherUsers } = useSelector(store => store.user);
@@ -34,8 +35,11 @@ export const RightSidebar = () => {
                                 </div>
                             </div>
                             {/* the follow button  */}
+
                             <div>
-                                <button className="bg-[#01111c] px-4 py-3 text-white font-semibold text-center border-none rounded-full p-2 hover:bg-blue-950"> Follow</button>
+                                <Link to={`/profile/${user._id}`}>
+                                    <button className="bg-[#01111c] px-4 py-3 text-white font-semibold text-center border-none rounded-full p-2 hover:bg-blue-950"> Follow</button>
+                                </Link>
                             </div>
                         </div>)
                         })
