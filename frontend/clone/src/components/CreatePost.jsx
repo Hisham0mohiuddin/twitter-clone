@@ -1,7 +1,36 @@
+import axios from 'axios';
+import { useState } from 'react';
 import Avatar from 'react-avatar';
 import { AiOutlinePicture } from "react-icons/ai";
+import { TWEET_API_END_POINT } from '../utils/constant';
+import toast from "react-hot-toast";
+import { useDispatch } from 'react-redux';
+import { addTweet } from "../redux/tweetSlice";
 
 const CreatePost = () => {
+    const [description,setDescription] = useState("");
+    const dispatch = useDispatch();
+    const submitHandler = async (e) => {
+        e.preventDefault();
+    
+        try {
+            const res = await axios.post(
+                `${TWEET_API_END_POINT}/post`,
+                { description },
+                { withCredentials: true }
+            );
+    
+            if (res.data.success) {
+                toast.success(res.data.message);
+                dispatch(addTweet(res.data.tweet));
+                setDescription("");
+
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error(error.response?.data?.message || "Something went wrong");
+        }
+    };
     return (
         <div>
             {/* this is teh following for u selector */}
@@ -26,14 +55,14 @@ const CreatePost = () => {
                         <Avatar googleId="118096717852922241760" size="40" round={true} />
                     </div>
                     
-                    <input type="text" className = "w-full outline-none border-none text-lg ml-2" placeholder ="what is hapening"/>
+                    <input type="text"  value = {description} onChange = {(e)=> setDescription(e.target.value)} className = "w-full outline-none border-none text-lg ml-2 " placeholder ="what is hapening"/>
                 </div>
                 {/* the post button and the image  */}
                 <div className=" flex items-center justify-between border-b border-gray-300 p-3">
                     <div>
                         <AiOutlinePicture size = "24px"/>
                     </div>
-                    <button className = "bg-[#1098F8] px-4 py-3 text-white font-semibold text-center border-none rounded-full p-2"> Post</button>                </div>
+                    <button onClick = {submitHandler} className = "bg-[#1098F8] px-4 py-3 text-white font-semibold text-center border-none rounded-full p-2 hover:bg-[#3a5bde]"> Post</button>                </div>
 
             </div>
         </div>
