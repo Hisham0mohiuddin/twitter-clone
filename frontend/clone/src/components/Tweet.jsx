@@ -3,14 +3,55 @@ import Avatar from 'react-avatar'
 import { AiOutlineLike } from "react-icons/ai";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { TWEET_API_END_POINT } from '../utils/constant';
+import toast from 'react-hot-toast';
+import { getRefresh } from '../redux/tweetSlice';
+import { FaRegTrashAlt } from "react-icons/fa";
+
 
 
 
 const Tweet = ({tweet}) => {
 //   const {user} = useSelector(store=>store.user);
 //   if(!user) return <div className = "text-center text-2xl font-bold border-b border-gray-200 pb-2"> Loading...</div>
-    console.log(tweet?.userDetails?.name);
+    
+    const dispatch = useDispatch();
+    const {user} = useSelector(store=>store.user);
+    const likeOrDislikeHandler= async (tweetId) => {
+        try {
+            const res = await axios.put(
+                `${TWEET_API_END_POINT}/like/${tweetId}`,
+                {}, // request body
+                {
+                    withCredentials: true
+                }
+            );
+            dispatch(getRefresh());
+            if(res.data.success){
+                
+                toast.success(res.data.message)
+            }
+        } catch (error) {
+            console.error();
+            
+        }
+    }   
+    const deleteTweetHandler = async (id) => {
+        try {
+            const res = await axios.delete(`${TWEET_API_END_POINT}/delete/${id}`,{withCredentials:true});
+            dispatch(getRefresh());
+            if(res.data.success){
+                toast.success(res.data.message);
+            }
+        } catch (error) {
+            console.error();
+            console.log(error.response?.data);
+            
+        }
+    } 
+
     return (
     <div className = "p-3 border-b border-gray-200">
         <div>
@@ -31,13 +72,13 @@ const Tweet = ({tweet}) => {
                     <div className = "flex justify-between gap-x-1.5">
                         <div className = "flex items-center">
                             
-                            <div className="p-2 hover:bg-green-200 rounded-full cursor-pointer">
+                            <div onClick = {()=>likeOrDislikeHandler(tweet?._id)} className="p-2 hover:bg-blue-200 rounded-full cursor-pointer">
                                 <AiOutlineLike size= "20px"/>
                             </div>
                             <p>{tweet?.like?.length}</p>
                         </div>
                         <div className = "flex items-center">
-                            <div className="p-2 hover:bg-pink-200 rounded-full cursor-pointer">
+                            <div className="p-2 hover:bg-blue-200 rounded-full cursor-pointer">
                                 <FaRegCommentAlt size= "20px"/>
                             </div>
                             <p>0</p>
@@ -48,6 +89,17 @@ const Tweet = ({tweet}) => {
                             </div>
                             <p>0</p>
                         </div>
+                        {
+                            user?._id===tweet?.userId &&(
+                            <div className = "flex items-center">
+                                <div onClick= {()=>deleteTweetHandler(tweet?._id)} className="p-2 hover:bg-blue-200 rounded-full cursor-pointer">
+                                    <FaRegTrashAlt size= "20px"/>
+                                </div>
+                                
+                            </div>
+                            )
+                        }
+                        
                     </div>
                 </div>
                 

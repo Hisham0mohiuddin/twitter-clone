@@ -11,9 +11,12 @@ const tweetSlice = createSlice({
         }
         ,addTweet: (state, action) => {
             state.tweets.unshift(action.payload);
+        },
+        getRefresh: (state) => {
+            state.refresh = !state.refresh;
         }
     }
 })
 
-export const {getALLTweets,addTweet} = tweetSlice.actions
+export const {getALLTweets,addTweet,getRefresh} = tweetSlice.actions
 export default tweetSlice.reducer;
