@@ -2,7 +2,7 @@ import { LeftSidebar } from "./LeftSidebar";
 import { RightSidebar } from "./RightSidebar";
 import Feed  from "./Feed";
 import {Outlet} from 'react-router-dom';
-import useGetProfile from "../hooks/useGetProfile";
+import useGetProfile from "../hooks/useGetProfile.js";
 import { useSelector } from "react-redux";
 import useOtherUsers from "../hooks/useOtherUsers";
 import useGetMyTweets from "../hooks/useGetMyTweets";

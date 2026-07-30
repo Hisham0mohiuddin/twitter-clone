@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getMyProfile, getOtherUser, getUser } from "../redux/userSlice.js"; // change path if needed
-import { USER_API_END_POINT } from "../utils/constant";
+import { USER_API_END_POINT } from "../utils/constant.jsx";
 
 
 const useOtherUsers = () => {

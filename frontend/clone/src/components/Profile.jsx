@@ -2,7 +2,7 @@ import React from 'react';
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import Avatar from 'react-avatar';
-import useGetProfile from "../hooks/useGetProfile";
+import useGetProfile from "../hooks/useGetProfile.js";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 

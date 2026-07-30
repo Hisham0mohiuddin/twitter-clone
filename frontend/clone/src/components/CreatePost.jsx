@@ -5,7 +5,7 @@ import { AiOutlinePicture } from "react-icons/ai";
 import { TWEET_API_END_POINT } from '../utils/constant';
 import toast from "react-hot-toast";
 import { useDispatch } from 'react-redux';
-import { addTweet } from "../redux/tweetSlice";
+import { addTweet, getALLTweets, getIsActive, getRefresh } from "../redux/tweetSlice";
 
 const CreatePost = () => {
     const [description,setDescription] = useState("");
@@ -31,16 +31,25 @@ const CreatePost = () => {
             toast.error(error.response?.data?.message || "Something went wrong");
         }
     };
+
+    const forYouHandler = ()=>{
+        dispatch(getIsActive(true));
+    }
+    const followingHandler = ()=>{
+        console.log("following clicked")
+        dispatch(getIsActive(false));
+    }
+    
     return (
         <div>
             {/* this is teh following for u selector */}
             <div className = "">
                 <div className="flex items-center justify-between border-b border-gray-200">
                     {/* this is for the following / for you selector */}
-                    <div className = " flex-1 hover:bg-gray-200 py-3 text-center " >
+                    <div onClick = {forYouHandler} className = " flex-1 hover:bg-gray-200 py-3 text-center " >
                         <h1 className = "font-bold text-gray-700 text-lg ">For You</h1>
                     </div>
-                    <div className = " flex-1 hover:bg-gray-200 py-3 text-center">
+                    <div onClick = {followingHandler} className = " flex-1 hover:bg-gray-200 py-3 text-center">
                         <h1 className = "font-bold text-gray-700 text-lg cursor-pointer">Following</h1>
                     </div>
 

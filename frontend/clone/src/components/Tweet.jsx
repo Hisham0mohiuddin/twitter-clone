@@ -9,6 +9,10 @@ import { TWEET_API_END_POINT } from '../utils/constant';
 import toast from 'react-hot-toast';
 import { getRefresh } from '../redux/tweetSlice';
 import { FaRegTrashAlt } from "react-icons/fa";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+
 
 
 
@@ -19,6 +23,10 @@ const Tweet = ({tweet}) => {
     
     const dispatch = useDispatch();
     const {user} = useSelector(store=>store.user);
+
+    dayjs.extend(relativeTime);
+
+    
     const likeOrDislikeHandler= async (tweetId) => {
         try {
             const res = await axios.put(
@@ -62,7 +70,7 @@ const Tweet = ({tweet}) => {
                     {/* the profile section  */}
                     <div className = "flex items-center ">
                         <h1 className = "font-bold">{tweet?.userDetails?.[0]?.name}</h1>
-                        <p className = "text-gray-500 text-sm ml-1"> @{tweet?.userDetails?.[0]?.username}</p>
+                        <p className = "text-gray-500 text-sm ml-1"> @{tweet?.userDetails?.[0]?.username}. {dayjs(tweet.createdAt).fromNow()}</p>
                     </div>
                     {/* making the tweet text section  */}
                     <div>
